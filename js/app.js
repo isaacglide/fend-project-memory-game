@@ -1,30 +1,39 @@
 /*
  * Create a list that holds all of your cards
  */
-const fullCardDeck = ['card1',
-                      'card2',
-                      'card3',
-                      'card4',
-                      'card5',
-                      'card6',
-                      'card7',
-                      'card8',
-                      'card9',
-                      'card10',
-                      'card11',
-                      'card12',
-                      'card13',
-                      'card14',
-                      'card15',
-                      'card16'];
+const cardList = ['fa-diamond',
+                  'fa-paper-plane-o',
+                  'fa-anchor',
+                  'fa-bolt',
+                  'fa-cube',
+                  'fa-anchor',
+                  'fa-leaf',
+                  'fa-bicycle',
+                  'fa-diamond',
+                  'fa-paper-plane-o',
+                  'fa-anchor',
+                  'fa-bolt',
+                  'fa-cube',
+                  'fa-anchor',
+                  'fa-leaf',
+                  'fa-bicycle'];
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
  *   - loop through each card and create its HTML
  *   - add each card's HTML to the page
  */
-shuffle(fullCardDeck);
-console.log(fullCardDeck);
+const shuffledCards = shuffle(cardList);                             // shuffle the deck randomly
+console.log(shuffledCards);                                          // temp to display the shuffled deck
+const gameBoard = document.querySelector('ul.deck');                 // gameBoard is the deck class element
+let iconElements = gameBoard.getElementsByTagName('i');              // iconElements are the <i> icon elements in an HTML live collection
+
+for (let i = 0; i < shuffledCards.length; i++){
+  let icon = shuffledCards[i];                                       // load icon from shuffled cards
+  iconElements[i].className='';                                      // clear out the class name
+  iconElements[i].classList.add('fa',shuffledCards[i]);              // load the new class name after shuffling cards
+}
+console.log(iconElements);                                           // temp to display list of icon elements
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
