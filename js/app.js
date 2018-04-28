@@ -1,15 +1,30 @@
 /*
  * Create a list that holds all of your cards
  */
-
-
+const fullCardDeck = ['card1',
+                      'card2',
+                      'card3',
+                      'card4',
+                      'card5',
+                      'card6',
+                      'card7',
+                      'card8',
+                      'card9',
+                      'card10',
+                      'card11',
+                      'card12',
+                      'card13',
+                      'card14',
+                      'card15',
+                      'card16'];
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
  *   - loop through each card and create its HTML
  *   - add each card's HTML to the page
  */
-
+shuffle(fullCardDeck);
+console.log(fullCardDeck);
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
