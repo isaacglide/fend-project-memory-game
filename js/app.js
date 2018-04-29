@@ -17,6 +17,8 @@ const cardList = ['fa-diamond',
                   'fa-anchor',
                   'fa-leaf',
                   'fa-bicycle'];
+
+let openCardsList = [];
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -61,11 +63,21 @@ function shuffle(array) {
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
 
- gameBoard.addEventListener('click',displayCard);         //Add event lister if a card is clicked
+gameBoard.addEventListener('click',cardClicked);          //Add event lister if a card is clicked
 
- function displayCard (event) {                           //Flip card function
-   if (event.target.nodeName === 'LI') {                  //Check that a card was the item clicked on screen
+function cardClicked () {                                 //Function to do when a card is clicked
+    displayCard (event);                                  //Display the card that is clicked
+    addCardToList (event.target);                         //Add card clicked to a list of 'open' cards
+}
+
+
+function displayCard (event) {                            //Flip card function
+    if (event.target.nodeName === 'LI') {                 //Check that a card was the item clicked on screen
         event.target.classList.add('open','show');        //Show card by adding the open and show classes to <li>
-   }
+        }
+}
 
- }
+function addCardToList (target) {
+    let cardName = target.firstElementChild.className;    //Get the class/card name of the card that was clicked
+    openCardsList.push(cardName);                         //Add the class/card name to a list of currently open cards
+}
