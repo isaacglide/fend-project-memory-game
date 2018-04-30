@@ -66,6 +66,9 @@ function shuffle(array) {
 gameBoard.addEventListener('click',cardClicked);          //Add event lister if a card is clicked
 
 function cardClicked () {                                 //Function to do when a card is clicked
+    if (event.target.classList.contains('open') || event.target.nodeName !== 'LI') {
+      return;
+    }
     displayCard (event.target);                           //Display the card that is clicked
     addCardToList (event.target);                         //Add card clicked to a list of 'open' cards
     if (openCardsList.length > 1) {
