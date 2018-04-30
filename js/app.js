@@ -68,16 +68,24 @@ gameBoard.addEventListener('click',cardClicked);          //Add event lister if 
 function cardClicked () {                                 //Function to do when a card is clicked
     displayCard (event.target);                           //Display the card that is clicked
     addCardToList (event.target);                         //Add card clicked to a list of 'open' cards
+    if (openCardsList.length > 1) {
+        checkForMatch ();                                 //Check if the last two opened cards are a match
+    }
+
 }
 
 
-function displayCard (target) {                            //Flip card function
-    if (target.nodeName === 'LI') {                 //Check that a card was the item clicked on screen
-        target.classList.add('open','show');        //Show card by adding the open and show classes to <li>
+function displayCard (target) {                           //Flip card function
+    if (target.nodeName === 'LI') {                       //Check that a card was the item clicked on screen
+        target.classList.add('open','show');              //Show card by adding the open and show classes to <li>
         }
 }
 
 function addCardToList (target) {
     let cardName = target.firstElementChild.className;    //Get the class/card name of the card that was clicked
     openCardsList.push(cardName);                         //Add the class/card name to a list of currently open cards
+}
+
+function checkForMatch () {
+  console.log('check for match');
 }
