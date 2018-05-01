@@ -72,7 +72,7 @@ function cardClicked () {                                 //Function to do when 
     displayCard (event.target);                           //Display the card that is clicked
     addCardToList (event.target);                         //Add card clicked to a list of 'open' cards
     if (openCardsList.length > 1) {
-        checkForMatch ();                                 //Check if the last two opened cards are a match
+        matchFunction ();                                 //Check if the last two opened cards are a match
     }
 
 }
@@ -89,6 +89,10 @@ function addCardToList (target) {
     openCardsList.push(cardName);                         //Add the class/card name to a list of currently open cards
 }
 
-function checkForMatch () {
-  console.log('check for match');
+function matchFunction () {                               //All the matching functions
+    checkForMatch ();                                     //Check if the two cards in the openCardsList are a match
+}
+
+function checkForMatch () {                               //Check for match function
+  console.log('match checked');
 }
