@@ -90,9 +90,13 @@ function addCardToList (target) {
 }
 
 function matchFunction () {                               //All the matching functions
-    checkForMatch ();                                     //Check if the two cards in the openCardsList are a match
+    if (checkForMatch () === true) {
+        console.log('cards match');
+    }   else {
+        console.log('cards do not match');
+    }                              //Check if the two cards in the openCardsList are a match
 }
 
 function checkForMatch () {                               //Check for match function
-  console.log('match checked');
+    return (openCardsList[0] === openCardsList[1]);       //Check if the first card in the open list is the same as the second card in the open list
 }
