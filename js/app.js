@@ -29,6 +29,7 @@ const shuffledCards = shuffle(cardList);                             // shuffle 
 console.log(shuffledCards);                                          // temp to display the shuffled deck
 const gameBoard = document.querySelector('ul.deck');                 // gameBoard is the deck class element
 let iconElements = gameBoard.getElementsByTagName('i');              // iconElements are the <i> icon elements in an HTML live collection
+let cardShapes = gameBoard.getElementsByTagName('li');               // cardShapes are the <li> elements in an HTML live collection
 
 for (let i = 0; i < shuffledCards.length; i++){
   let icon = shuffledCards[i];                                       // load icon from shuffled cards
@@ -78,23 +79,28 @@ function cardClicked () {                                 //Function to do when 
 }
 
 
-function displayCard (target) {                           //Flip card function
-    if (target.nodeName === 'LI') {                       //Check that a card was the item clicked on screen
-        target.classList.add('open','show');              //Show card by adding the open and show classes to <li>
+function displayCard (target) {                                           //Flip card function
+    if (target.nodeName === 'LI') {                                       //Check that a card was the item clicked on screen
+        target.classList.add('open','show');                              //Show card by adding the open and show classes to <li>
         }
 }
 
 function addCardToList (target) {
-    let cardName = target.firstElementChild.className;    //Get the class/card name of the card that was clicked
-    openCardsList.push(cardName);                         //Add the class/card name to a list of currently open cards
+    let cardName = target.firstElementChild.classList[1];                 //Get the class/card name of the card that was clicked
+    openCardsList.push(cardName);                                         //Add the class/card name to a list of currently open cards
 }
 
-function matchFunction () {                               //All the matching functions
-    if (checkForMatch () === true) {
+function matchFunction () {                                               //All the matching functions
+    if (checkForMatch () === true) {                                      //Check if the two cards in the openCardsList are a match
+        let cardOneIndex = shuffledCards.indexOf(openCardsList[0]);       //get the index of the first matched card
+        let cardTwoIndex = shuffledCards.lastIndexOf(openCardsList[0]);   //get the index of the second matched card
+        iconElements[cardOneIndex].parentElement.classList.add('match');  //turn the first matched card green
+        iconElements[cardTwoIndex].parentElement.classList.add('match');  //turn the second matched card green
+        openCardsList = [];                                               //clear out the open cards list
         console.log('cards match');
     }   else {
         console.log('cards do not match');
-    }                              //Check if the two cards in the openCardsList are a match
+    }
 }
 
 function checkForMatch () {                               //Check for match function
