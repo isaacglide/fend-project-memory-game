@@ -99,19 +99,23 @@ function matchFunction () {                                               //All 
         iconElements[cardTwoIndex].parentElement.classList.add('match');  //turn the second matched card green
         matchedCardList.push(openCardsList[0]);
         matchedCardList.push(openCardsList[1]);
+        openCardsList = [];                                               //clear out the open cards list
         console.log(matchedCardList);
         if (matchedCardList.length === 16) {
             console.log('You have won');
         }
     }   else {
+            window.setTimeout(function unMatchedFunction () {
             let indexes = getIndexes (shuffledCards,openCardsList[0]);              //get indexes of first opened card from the full list of shuffled cards
             iconElements[indexes[0]].parentElement.classList.remove('open','show'); //flip over the unmatched card (first index)
             iconElements[indexes[1]].parentElement.classList.remove('open','show'); //flip over the unmatched card (second index) flip both indexs per icon to ensure card is not showing at either index
             indexes = getIndexes (shuffledCards,openCardsList[1]);                  //get indexes of second opened card from the full list of shuffled cards
             iconElements[indexes[0]].parentElement.classList.remove('open','show'); //flip over the unmatched card (first index)
             iconElements[indexes[1]].parentElement.classList.remove('open','show'); //flip over the unmatched card (second index) flip both indexs per icon to ensure card is not showing at either index
+            openCardsList = []; 
+          },2000);
     }
-    openCardsList = [];                                                   //clear out the open cards list
+
 }
 
 function checkForMatch () {                               //Check for match function
