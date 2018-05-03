@@ -68,15 +68,14 @@ function shuffle(array) {
 gameBoard.addEventListener('click',cardClicked);          //Add event lister if a card is clicked
 
 function cardClicked () {                                 //Function to do when a card is clicked
-    if (event.target.classList.contains('open') || event.target.nodeName !== 'LI') {
-      return;
+    if (event.target.classList.contains('open') || event.target.nodeName !== 'LI' || openCardsList.length === 2) {
+      return;                 //if the card is already open, the clicked target isn't a card, or their are currently two cards are currently in the openCardsList to be checked for a match, return (no function is ran)
     }
     displayCard (event.target);                           //Display the card that is clicked
     addCardToList (event.target);                         //Add card clicked to a list of 'open' cards
     if (openCardsList.length > 1) {
         matchFunction ();                                 //Check if the last two opened cards are a match
     }
-
 }
 
 
@@ -104,7 +103,7 @@ function matchFunction () {                                               //All 
         if (matchedCardList.length === 16) {
             console.log('You have won');
         }
-    }   else {
+    }   else {                                                            //what to do if both cards flipped over are not a match
             window.setTimeout(function unMatchedFunction () {
             let indexes = getIndexes (shuffledCards,openCardsList[0]);              //get indexes of first opened card from the full list of shuffled cards
             iconElements[indexes[0]].parentElement.classList.remove('open','show'); //flip over the unmatched card (first index)
@@ -112,7 +111,7 @@ function matchFunction () {                                               //All 
             indexes = getIndexes (shuffledCards,openCardsList[1]);                  //get indexes of second opened card from the full list of shuffled cards
             iconElements[indexes[0]].parentElement.classList.remove('open','show'); //flip over the unmatched card (first index)
             iconElements[indexes[1]].parentElement.classList.remove('open','show'); //flip over the unmatched card (second index) flip both indexs per icon to ensure card is not showing at either index
-            openCardsList = [];
+            openCardsList = [];                                                     //blank out list that contains cards that are open
           },800);
     }
 
