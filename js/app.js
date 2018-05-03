@@ -112,8 +112,8 @@ function matchFunction () {                                               //All 
             indexes = getIndexes (shuffledCards,openCardsList[1]);                  //get indexes of second opened card from the full list of shuffled cards
             iconElements[indexes[0]].parentElement.classList.remove('open','show'); //flip over the unmatched card (first index)
             iconElements[indexes[1]].parentElement.classList.remove('open','show'); //flip over the unmatched card (second index) flip both indexs per icon to ensure card is not showing at either index
-            openCardsList = []; 
-          },2000);
+            openCardsList = [];
+          },800);
     }
 
 }
