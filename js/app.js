@@ -10,15 +10,16 @@ const cardList = ['fa-diamond',
                   'fa-leaf',
                   'fa-bicycle',
                   'fa-diamond',
-                  'fa-paper-plane-o',
-                  'fa-anchor',
-                  'fa-bolt',
-                  'fa-cube',
-                  'fa-anchor',
+                  'fa-bomb',
                   'fa-leaf',
-                  'fa-bicycle'];
+                  'fa-bomb',
+                  'fa-bolt',
+                  'fa-bicycle',
+                  'fa-paper-plane-o',
+                  'fa-cube'];
 
 let openCardsList = [];
+let matchedCardList = [];
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -93,16 +94,36 @@ function addCardToList (target) {
 function matchFunction () {                                               //All the matching functions
     if (checkForMatch () === true) {                                      //Check if the two cards in the openCardsList are a match
         let cardOneIndex = shuffledCards.indexOf(openCardsList[0]);       //get the index of the first matched card
-        let cardTwoIndex = shuffledCards.lastIndexOf(openCardsList[0]);   //get the index of the second matched card
+        let cardTwoIndex = shuffledCards.lastIndexOf(openCardsList[1]);   //get the index of the second matched card
         iconElements[cardOneIndex].parentElement.classList.add('match');  //turn the first matched card green
         iconElements[cardTwoIndex].parentElement.classList.add('match');  //turn the second matched card green
-        openCardsList = [];                                               //clear out the open cards list
-        console.log('cards match');
+        matchedCardList.push(openCardsList[0]);
+        matchedCardList.push(openCardsList[1]);
+        console.log(matchedCardList);
+        if (matchedCardList.length === 16) {
+            console.log('You have won');
+        }
     }   else {
-        console.log('cards do not match');
+            let indexes = getIndexes (shuffledCards,openCardsList[0]);
+            iconElements[indexes[0]].parentElement.classList.remove('open','show');
+            iconElements[indexes[1]].parentElement.classList.remove('open','show');
+            indexes = getIndexes (shuffledCards,openCardsList[1]);
+            iconElements[indexes[0]].parentElement.classList.remove('open','show');
+            iconElements[indexes[1]].parentElement.classList.remove('open','show');
     }
+    openCardsList = [];                                                   //clear out the open cards list
 }
 
 function checkForMatch () {                               //Check for match function
     return (openCardsList[0] === openCardsList[1]);       //Check if the first card in the open list is the same as the second card in the open list
+}
+
+function getIndexes (array,value) {
+    let index = [];
+    for (i=0;i<array.length;i++) {
+        if (array[i] === value) {
+            index.push(i);
+        }
+    }
+    return index;
 }
