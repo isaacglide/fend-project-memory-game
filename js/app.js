@@ -71,10 +71,10 @@ function cardClicked () {                                 //Function to do when 
     if (event.target.classList.contains('open') || event.target.nodeName !== 'LI' || openCardsList.length === 2) {
       return;                 //if the card is already open, the clicked target isn't a card, or their are currently two cards are currently in the openCardsList to be checked for a match, return (no function is ran)
     }
-    incrementCounter ();
     displayCard (event.target);                           //Display the card that is clicked
     addCardToList (event.target);                         //Add card clicked to a list of 'open' cards
-    if (openCardsList.length > 1) {
+    if (openCardsList.length > 1) {                       //Check if there are currently two cards flipped open for a possible match
+        incrementCounter ();
         matchFunction ();                                 //Check if the last two opened cards are a match
     }
 }
