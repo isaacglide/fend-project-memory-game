@@ -71,6 +71,7 @@ function cardClicked () {                                 //Function to do when 
     if (event.target.classList.contains('open') || event.target.nodeName !== 'LI' || openCardsList.length === 2) {
       return;                 //if the card is already open, the clicked target isn't a card, or their are currently two cards are currently in the openCardsList to be checked for a match, return (no function is ran)
     }
+    incrementCounter ();
     displayCard (event.target);                           //Display the card that is clicked
     addCardToList (event.target);                         //Add card clicked to a list of 'open' cards
     if (openCardsList.length > 1) {
@@ -121,7 +122,11 @@ function checkForMatch () {                               //Check for match func
     return (openCardsList[0] === openCardsList[1]);       //Check if the first card in the open list is the same as the second card in the open list
 }
 
-function getIndexes (array,value) {
+function incrementCounter () {
+    document.querySelector('span.moves').innerText++;
+}
+
+function getIndexes (array,value) {                       //function to get indexes of unmatched cards in the shuffled card deck
     let index = [];
     for (i=0;i<array.length;i++) {
         if (array[i] === value) {
