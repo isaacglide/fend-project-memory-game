@@ -33,7 +33,8 @@ let iconElements = gameBoard.getElementsByTagName('i');              // iconElem
 let cardShapes = gameBoard.getElementsByTagName('li');               // cardShapes are the <li> elements in an HTML live collection
 const scorePanel = document.querySelector('ul.stars');               //get unordored list containing the star elements
 let starsList = scorePanel.getElementsByTagName('i');                //get list of star elements
-let counter = 0;
+let counter = 0;                                                     //initialize game move counter at zero at the start of the game
+let timerRunning = true;                                             //default the timer running as true.  Will change to false when user wins game
 
 for (let i = 0; i < shuffledCards.length; i++){
   let icon = shuffledCards[i];                                       // load icon from shuffled cards
@@ -74,6 +75,9 @@ function cardClicked () {                                 //Function to do when 
     if (event.target.classList.contains('open') || event.target.nodeName !== 'LI' || openCardsList.length === 2) {
       return;                 //if the card is already open, the clicked target isn't a card, or their are currently two cards are currently in the openCardsList to be checked for a match, return (no function is ran)
     }
+    if (counter === 0 && openCardsList.length === 0) {
+      startTimer ();
+    }
     displayCard (event.target);                           //Display the card that is clicked
     addCardToList (event.target);                         //Add card clicked to a list of 'open' cards
     if (openCardsList.length > 1) {                       //Check if there are currently two cards flipped open for a possible match
@@ -108,6 +112,7 @@ function matchFunction () {                                               //All 
         openCardsList = [];                                               //clear out the open cards list
         console.log(matchedCardList);
         if (matchedCardList.length === 16) {
+            timerRunning = false;
             console.log('You have won');
         }
     }   else {                                                            //what to do if both cards flipped over are not a match
@@ -153,4 +158,17 @@ function getIndexes (array,value) {                       //function to get inde
         }
     }
     return index;
+}
+
+function startTimer () {
+    if (timerRunning === true) {
+      let timeString = document.querySelector('span.gameTimer').innerText;
+      let timerArray = timeString.split(':');
+      let seconds = timerArray[2];
+      seconds++;
+      document.querySelector('span.gameTimer').innerText = '00:00:' + seconds;
+      setTimeout(startTimer, 1000);
+    }
+
+
 }
