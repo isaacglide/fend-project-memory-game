@@ -31,6 +31,9 @@ console.log(shuffledCards);                                          // temp to 
 const gameBoard = document.querySelector('ul.deck');                 // gameBoard is the deck class element
 let iconElements = gameBoard.getElementsByTagName('i');              // iconElements are the <i> icon elements in an HTML live collection
 let cardShapes = gameBoard.getElementsByTagName('li');               // cardShapes are the <li> elements in an HTML live collection
+const scorePanel = document.querySelector('ul.stars');               //get unordored list containing the star elements
+let starsList = scorePanel.getElementsByTagName('i');                //get list of star elements
+let counter = 0;
 
 for (let i = 0; i < shuffledCards.length; i++){
   let icon = shuffledCards[i];                                       // load icon from shuffled cards
@@ -74,7 +77,10 @@ function cardClicked () {                                 //Function to do when 
     displayCard (event.target);                           //Display the card that is clicked
     addCardToList (event.target);                         //Add card clicked to a list of 'open' cards
     if (openCardsList.length > 1) {                       //Check if there are currently two cards flipped open for a possible match
-        incrementCounter ();
+        incrementCounter ();                              //Increase the move counter by 1
+        if (counter >= 12) {
+            deduceStars (starsList);
+        }
         matchFunction ();                                 //Check if the last two opened cards are a match
     }
 }
@@ -123,7 +129,20 @@ function checkForMatch () {                               //Check for match func
 }
 
 function incrementCounter () {
-    document.querySelector('span.moves').innerText++;
+    counter++;
+    document.querySelector('span.moves').innerText = counter;
+}
+
+function deduceStars (starsList) {
+    if (counter === 12) {
+      starsList[2].classList.replace('fa-star','fa-star-o');
+    }
+    else if (counter === 18) {
+      starsList[1].classList.replace('fa-star','fa-star-o');
+    }
+    else if (counter === 24) {
+      starsList[0].classList.replace('fa-star','fa-star-o');
+    }
 }
 
 function getIndexes (array,value) {                       //function to get indexes of unmatched cards in the shuffled card deck
