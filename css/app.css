@@ -108,7 +108,8 @@ h1 {
 
 .score-panel .gameTimer {
   float: left;
-  padding: 0 70px 0 0;
+  padding: 0 130px 0 0;
+  width:20%;
 }
 
 .score-panel .restart {
