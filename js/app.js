@@ -164,9 +164,27 @@ function startTimer () {
     if (timerRunning === true) {
       let timeString = document.querySelector('span.gameTimer').innerText;
       let timerArray = timeString.split(':');
+      let hours = timerArray[0];
+      let minutes = timerArray[1];
       let seconds = timerArray[2];
-      seconds++;
-      document.querySelector('span.gameTimer').innerText = '00:00:' + seconds;
+      if (seconds == 59) {
+          if (minutes < 9) {
+              minutes++;
+              minutes = '0'+minutes;
+              seconds='00';
+          }   else {
+                  minutes++;
+          }
+      }   else {
+              if (seconds < 9) {
+                  seconds++;
+                  seconds = '0'+seconds;
+                }   else {
+                        seconds++;
+                    }
+          }
+
+      document.querySelector('span.gameTimer').innerText = hours + ':' + minutes + ':' + seconds;
       setTimeout(startTimer, 1000);
     }
 
