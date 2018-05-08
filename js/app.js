@@ -77,7 +77,7 @@ function cardClicked () {                                 //Function to do when 
       return;                 //if the card is already open, the clicked target isn't a card, or their are currently two cards are currently in the openCardsList to be checked for a match, return (no function is ran)
     }
     if (counter === 0 && openCardsList.length === 0) {
-      startTimer ();
+      setTimeout(startTimer, 1000);
     }
     displayCard (event.target);                           //Display the card that is clicked
     addCardToList (event.target);                         //Add card clicked to a list of 'open' cards
