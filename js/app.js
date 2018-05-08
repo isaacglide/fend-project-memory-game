@@ -31,10 +31,11 @@ console.log(shuffledCards);                                          // temp to 
 const gameBoard = document.querySelector('ul.deck');                 // gameBoard is the deck class element
 let iconElements = gameBoard.getElementsByTagName('i');              // iconElements are the <i> icon elements in an HTML live collection
 let cardShapes = gameBoard.getElementsByTagName('li');               // cardShapes are the <li> elements in an HTML live collection
-const scorePanel = document.querySelector('ul.stars');               //get unordored list containing the star elements
-let starsList = scorePanel.getElementsByTagName('i');                //get list of star elements
-let counter = 0;                                                     //initialize game move counter at zero at the start of the game
-let timerRunning = true;                                             //default the timer running as true.  Will change to false when user wins game
+const scorePanel = document.querySelector('ul.stars');               // get unordored list containing the star elements
+let starsList = scorePanel.getElementsByTagName('i');                // get list of star elements
+let counter = 0;                                                     // initialize game move counter at zero at the start of the game
+let timerRunning = true;                                             // default the timer running as true.  Will change to false when user wins game
+const restartButton = document.querySelector('div.restart');         // load the restart element in restartButton
 
 for (let i = 0; i < shuffledCards.length; i++){
   let icon = shuffledCards[i];                                       // load icon from shuffled cards
@@ -68,7 +69,7 @@ function shuffle(array) {
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
-
+restartButton.addEventListener('click',restartPage);      //refresh the page
 gameBoard.addEventListener('click',cardClicked);          //Add event lister if a card is clicked
 
 function cardClicked () {                                 //Function to do when a card is clicked
@@ -160,7 +161,7 @@ function getIndexes (array,value) {                       //function to get inde
     return index;
 }
 
-function startTimer () {
+function startTimer () {                                                        // live timer function
     if (timerRunning === true) {
       let timeString = document.querySelector('span.gameTimer').innerText;
       let timerArray = timeString.split(':');
@@ -200,6 +201,8 @@ function startTimer () {
       document.querySelector('span.gameTimer').innerText = hours + ':' + minutes + ':' + seconds;
       setTimeout(startTimer, 1000);
     }
+}
 
-
+function restartPage () {
+    document.location.reload();
 }
