@@ -168,12 +168,25 @@ function startTimer () {
       let minutes = timerArray[1];
       let seconds = timerArray[2];
       if (seconds == 59) {
-          if (minutes < 9) {
+          if (minutes == 59) {
+              if (hours < 9) {
+                  hours++;
+                  hours = '0'+hours;
+                  minutes='00';
+                  seconds='00';
+              } else {
+                  hours++;
+                  minutes='00';
+                  seconds='00';
+              }
+          }
+          else if (minutes < 9) {
               minutes++;
               minutes = '0'+minutes;
               seconds='00';
           }   else {
                   minutes++;
+                  seconds='00';
           }
       }   else {
               if (seconds < 9) {
