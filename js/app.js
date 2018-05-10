@@ -36,6 +36,9 @@ let starsList = scorePanel.getElementsByTagName('i');                // get list
 let counter = 0;                                                     // initialize game move counter at zero at the start of the game
 let timerRunning = true;                                             // default the timer running as true.  Will change to false when user wins game
 const restartButton = document.querySelector('div.restart');         // load the restart element in restartButton
+const modal = document.getElementById('winningModal');               // load the modal in a variable to use later
+const scoreWording = document.getElementById('score');               // load the score ID to update the wording when the user wins the game
+let stars = 3;                                                       // default number of stars to 3 at the start
 
 for (let i = 0; i < shuffledCards.length; i++){
   let icon = shuffledCards[i];                                       // load icon from shuffled cards
@@ -114,7 +117,7 @@ function matchFunction () {                                               //All 
         console.log(matchedCardList);
         if (matchedCardList.length === 16) {
             timerRunning = false;
-            console.log('You have won');
+            displayModal  ();
         }
     }   else {                                                            //what to do if both cards flipped over are not a match
             window.setTimeout(function unMatchedFunction () {
@@ -142,12 +145,15 @@ function incrementCounter () {
 function deduceStars (starsList) {
     if (counter === 12) {
       starsList[2].classList.replace('fa-star','fa-star-o');
+      stars = 2;
     }
     else if (counter === 18) {
       starsList[1].classList.replace('fa-star','fa-star-o');
+      stars = 1;
     }
     else if (counter === 24) {
       starsList[0].classList.replace('fa-star','fa-star-o');
+      stars = 0;
     }
 }
 
@@ -205,4 +211,10 @@ function startTimer () {                                                        
 
 function restartPage () {
     document.location.reload();
+}
+
+function displayModal () {
+    let winningTime = document.querySelector('span.gameTimer').innerText;
+    scoreWording.innerText = 'With ' + counter + ' moves and ' + stars + ' stars in ' + winningTime;
+    modal.style.display = 'block';
 }
