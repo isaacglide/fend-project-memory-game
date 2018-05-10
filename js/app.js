@@ -27,7 +27,6 @@ let matchedCardList = [];
  *   - add each card's HTML to the page
  */
 const shuffledCards = shuffle(cardList);                             // shuffle the deck randomly
-console.log(shuffledCards);                                          // temp to display the shuffled deck
 const gameBoard = document.querySelector('ul.deck');                 // gameBoard is the deck class element
 let iconElements = gameBoard.getElementsByTagName('i');              // iconElements are the <i> icon elements in an HTML live collection
 let cardShapes = gameBoard.getElementsByTagName('li');               // cardShapes are the <li> elements in an HTML live collection
@@ -39,13 +38,15 @@ const restartButton = document.querySelector('div.restart');         // load the
 const modal = document.getElementById('winningModal');               // load the modal in a variable to use later
 const scoreWording = document.getElementById('score');               // load the score ID to update the wording when the user wins the game
 let stars = 3;                                                       // default number of stars to 3 at the start
+const yesButton = document.getElementById('yesBtn');
+const noButton = document.getElementById('noBtn');
+
 
 for (let i = 0; i < shuffledCards.length; i++){
   let icon = shuffledCards[i];                                       // load icon from shuffled cards
   iconElements[i].className='';                                      // clear out the class name
   iconElements[i].classList.add('fa',shuffledCards[i]);              // load the new class name after shuffling cards
 }
-console.log(iconElements);                                           // temp to display list of icon elements
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
@@ -74,6 +75,9 @@ function shuffle(array) {
  */
 restartButton.addEventListener('click',restartPage);      //refresh the page
 gameBoard.addEventListener('click',cardClicked);          //Add event lister if a card is clicked
+yesButton.addEventListener('click',restartPage);
+noButton.addEventListener('click',noClicked);
+
 
 function cardClicked () {                                 //Function to do when a card is clicked
     if (event.target.classList.contains('open') || event.target.nodeName !== 'LI' || openCardsList.length === 2) {
@@ -114,7 +118,6 @@ function matchFunction () {                                               //All 
         matchedCardList.push(openCardsList[0]);
         matchedCardList.push(openCardsList[1]);
         openCardsList = [];                                               //clear out the open cards list
-        console.log(matchedCardList);
         if (matchedCardList.length === 16) {
             timerRunning = false;
             displayModal  ();
@@ -217,4 +220,8 @@ function displayModal () {
     let winningTime = document.querySelector('span.gameTimer').innerText;
     scoreWording.innerText = 'With ' + counter + ' moves and ' + stars + ' stars in ' + winningTime;
     modal.style.display = 'block';
+}
+
+function noClicked () {
+    modal.style.display = 'none';
 }
