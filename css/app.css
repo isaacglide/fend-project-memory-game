@@ -106,10 +106,10 @@ h1 {
     display: inline-block;
 }
 
-.score-panel .gameTimer {
-  float: left;
-  padding: 0 130px 0 0;
-  width:20%;
+.score-panel .game-timer {
+    float: left;
+    padding: 0 130px 0 0;
+    width:20%;
 }
 
 .score-panel .restart {
@@ -117,22 +117,22 @@ h1 {
     cursor: pointer;
 }
 
-.modalContent {
+.modal-content {
     background-color: #fcffef;
     margin: auto;
     padding: 20px;
     border: 1px solid #888;
     width: 80%;
     text-align: center;
-  }
+}
 
 .modal {
-      display:none;
-      position: fixed;
-      z-index: 1;
-      padding: 20%;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0,0,0,0.4);
-  }
+    display:none;
+    position: fixed;
+    z-index: 1;
+    padding: 20%;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.4);
+}
