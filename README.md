@@ -1,20 +1,9 @@
 # Memory Game Project
 
-## Table of Contents
+## About the game
 
-* [Instructions](#instructions)
-* [Contributing](#contributing)
+This is the classic Memory Game.  Users try to find all matching card pairs as quickly as possible using the fewest moves.  Players win win all eight pairs have been matched.
 
-## Instructions
-
-The starter project has some HTML and CSS styling to display a static version of the Memory Game project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
-
-To get started, open `js/app.js` and start building out the app's functionality
-
-For specific, detailed instructions, look at the project instructions in the [Udacity Classroom](https://classroom.udacity.com/me).
-
-## Contributing
-
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
-
-For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
+This was a given to me as a starter project for part of my Udacity Front-End Developer Nanodegree program.
+I was given some HTML and CSS styling to display a static version of the Memory Game project. I converted the project from a static project to an interactive one and added a little HTML and CSS to enhance it.  All of the
+Javascript was written by me except for the randomization function used to shuffle the cards.
