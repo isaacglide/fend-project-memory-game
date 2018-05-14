@@ -90,7 +90,7 @@ function cardClicked () {                                                       
     addCardToList (event.target);                                                   // add card clicked to a list of 'open' cards
     if (openCardsList.length > 1) {                                                 // check if there are currently two cards flipped open for a possible match
         incrementCounter ();                                                        // increase the move counter by 1
-            if (counter >= 12) {                                                    // when the number of turns is 12 or greater, start checking if the number of stars needs reduced
+            if (counter >= 13) {                                                    // when the number of turns is 12 or greater, start checking if the number of stars needs reduced
                 deduceStars (starsList);                                            // reduce stars function
             }
         matchFunction ();                                                           // check if the last two opened cards are a match
