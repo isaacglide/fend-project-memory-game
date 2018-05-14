@@ -146,13 +146,13 @@ function incrementCounter () {                                                  
 }
 
 function deduceStars (starsList) {                                                  // function to change number of stars on the screen depending on how many moves the user has done
-    if (counter === 12) {
+    if (counter === 13) {
       starsList[2].classList.replace('fa-star','fa-star-o');
       stars = 2;                                                                    // load stars variable for winning modal popup later
-    }   else if (counter === 18) {
+    }   else if (counter === 19) {
             starsList[1].classList.replace('fa-star','fa-star-o');
             stars = 1;                                                              // load stars variable for winning modal popup later
-    }   else if (counter === 24) {
+    }   else if (counter === 25) {
             starsList[0].classList.replace('fa-star','fa-star-o');
             stars = 0;                                                              // load stars variable for winning modal popup later
     }   else {
@@ -162,6 +162,7 @@ function deduceStars (starsList) {                                              
 
 function getIndexes (array,value) {                                                 //function to get indexes of unmatched cards in the shuffled card deck
     let index = [];
+    let i;
     for (i=0;i<array.length;i++) {
         if (array[i] === value) {
             index.push(i);
